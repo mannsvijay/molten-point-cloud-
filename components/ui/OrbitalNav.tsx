@@ -28,6 +28,7 @@ export function OrbitalNav() {
       my.set(e.clientY - r.top);
     },
     [mx, my],
+    
   );
 
   const onLeave = useCallback(() => {
