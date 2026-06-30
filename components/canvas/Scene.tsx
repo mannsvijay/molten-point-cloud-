@@ -10,10 +10,10 @@ import { Environment } from "@react-three/drei";
 
 export function Scene() {
   return (
-    <div className="fixed inset-0 z-0 h-screen w-screen pointer-events-none">
+    <div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden pointer-events-none">
       <Canvas
         className="h-full w-full touch-none"
-        style={{ pointerEvents: "auto" }}
+        style={{ pointerEvents: "auto", display: "block" }}
         camera={{ position: [0, 0, 4.2], fov: 42 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}

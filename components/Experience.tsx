@@ -11,7 +11,9 @@ const Scene = dynamic(
 export function Experience() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-void">
-      <Scene />
+      <div className="absolute inset-0">
+        <Scene />
+      </div>
       <Overlay />
     </div>
   );
