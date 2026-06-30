@@ -28,6 +28,7 @@ export function TheFlux() {
       // Three/drei `Environment` sets `scene.environment` (a prefiltered cube texture).
       // We sample it in the fragment shader for high-contrast chrome reflections.
       uEnvMap: { value: null as unknown as THREE.Texture },
+      uEnvMapEnabled: { value: 0 },
     }),
     [],
   );
@@ -72,7 +73,9 @@ export function TheFlux() {
       materialRef.current.uniforms.uTime.value = t;
       materialRef.current.uniforms.uMouse.value.set(p.x, p.y);
       materialRef.current.uniforms.uDissolveProgress.value = dissolve;
-      if (scene.environment) {
+      const hasEnv = !!scene.environment;
+      materialRef.current.uniforms.uEnvMapEnabled.value = hasEnv ? 1 : 0;
+      if (hasEnv) {
         materialRef.current.uniforms.uEnvMap.value = scene.environment as unknown as THREE.Texture;
       }
     }

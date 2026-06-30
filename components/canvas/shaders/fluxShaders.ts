@@ -121,6 +121,7 @@ uniform float uTime;
 uniform vec2 uMouse;
 uniform float uDissolveProgress;
 uniform samplerCube uEnvMap;
+uniform float uEnvMapEnabled;
 
 varying vec3 vNormal;
 varying vec3 vViewPosition;
@@ -156,8 +157,11 @@ void main() {
   base += COL_SAFETY * glare * 0.12;
 
   // --- Environment reflection (high contrast chrome) ---
-  vec3 env = textureCube(uEnvMap, R).rgb;
-  vec3 reflection = env * (1.2 + 2.8 * fresnel);
+  vec3 env = vec3(0.16, 0.16, 0.22);
+  if (uEnvMapEnabled > 0.5) {
+    env = textureCube(uEnvMap, R).rgb;
+  }
+  vec3 reflection = env * (1.35 + 3.0 * fresnel);
   reflection += env * glare * 0.35;
 
   // --- Dissolve: mix toward particle-like noise ---
