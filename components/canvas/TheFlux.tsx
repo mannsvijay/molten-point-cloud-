@@ -92,7 +92,7 @@ export function TheFlux() {
 
   return (
     <RigidBody ref={rigidRef} type="kinematicPosition" colliders="ball">
-      <Sphere args={[1, 96, 96]} castShadow receiveShadow>
+      <Sphere args={[1.06, 96, 96]} castShadow receiveShadow scale={[1.02, 1.02, 1.02]}>
         <shaderMaterial
           ref={materialRef}
           vertexShader={fluxVertexShader}

@@ -149,12 +149,13 @@ void main() {
   vec3 oxidB = vec3(0.12, 0.08, 0.06); // dark tarnish
   vec3 oxidized = mix(oxidB, oxidA, ox);
 
-  vec3 base = mix(COL_VOID * 1.25, oxidized, 0.55 + fresnel * 0.45);
+  vec3 base = mix(COL_VOID * 1.35 + vec3(0.045, 0.035, 0.05), oxidized, 0.35 + fresnel * 0.45);
+  base += COL_SULPHUR * (0.08 + fresnel * 0.06);
 
   // --- Harsh mouse-driven hot spot (adds energy and streak vibe) ---
   vec2 m = uMouse * 0.35;
   float glare = smoothstep(0.62, 0.0, length(vWorldPosition.xy * 0.5 - m));
-  base += COL_SAFETY * glare * 0.12;
+  base += COL_SAFETY * glare * 0.16;
 
   // --- Environment reflection (high contrast chrome) ---
   vec3 env = vec3(0.16, 0.16, 0.22);
