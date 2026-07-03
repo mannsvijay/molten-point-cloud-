@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -20,7 +20,7 @@ export function OrbitalNav() {
   const spotlight = useMotionTemplate`radial-gradient(120px 120px at ${smx}px ${smy}px, rgba(228,255,0,0.14), transparent 70%)`;
 
   const onMove = useCallback(
-    (e: React.PointerEvent<HTMLElement>) => {
+    (e: ReactPointerEvent<HTMLElement>) => {
       const el = containerRef.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
@@ -75,7 +75,7 @@ function MagneticLink({ href, label }: { href: string; label: string }) {
   const sx = useSpring(x, { stiffness: 420, damping: 28, mass: 0.35 });
   const sy = useSpring(y, { stiffness: 420, damping: 28, mass: 0.35 });
 
-  const handleMove = (e: React.PointerEvent<HTMLAnchorElement>) => {
+  const handleMove = (e: ReactPointerEvent<HTMLAnchorElement>) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
