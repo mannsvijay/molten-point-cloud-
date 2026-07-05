@@ -82,6 +82,16 @@ export function TheFlux() {
 
     const target = new THREE.Vector3(-p.x * REPULSION, -p.y * REPULSION, 0);
     const rb = rigidRef.current;
+
+    // TEMP VISIBILITY FIX: ensure the orb always renders even if dissolve becomes too strong.
+    // (Will keep dissolve driving the look, but clamp to a safe range for visibility.)
+    if (materialRef.current) {
+      materialRef.current.uniforms.uDissolveProgress.value = THREE.MathUtils.clamp(
+        dissolve,
+        0.05,
+        0.95,
+      );
+    }
     if (rb) {
       const tr = rb.translation();
       const cur = new THREE.Vector3(tr.x, tr.y, tr.z);
