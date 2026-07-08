@@ -35,7 +35,12 @@ export function TicketButton({ className, href = "#tickets" }: Props) {
       >
         <Ticket className="h-5 w-5" strokeWidth={2.25} />
       </motion.span>
-      Tickets
+      <span className="flex flex-col items-start leading-none">
+        <span>Reserve tickets</span>
+        <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#0A0A0C]/70">
+          Priority access
+        </span>
+      </span>
     </motion.a>
   );
 }
