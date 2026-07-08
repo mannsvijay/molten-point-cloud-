@@ -12,6 +12,7 @@ const cards = [
       "The orb reacts to your gestures, creating a living pulse that shifts from molten metal to particle haze.",
     target: 0.12,
     icon: Sparkles,
+    chips: ["Gesture reactive", "Chrome bloom", "Intro pulse"],
   },
   {
     key: "experience",
@@ -21,6 +22,7 @@ const cards = [
       "A denser halo of points and layered motion turns the scene into a living event environment.",
     target: 0.5,
     icon: Orbit,
+    chips: ["24k particles", "Depth layers", "Crowd energy"],
   },
   {
     key: "tickets",
@@ -30,6 +32,7 @@ const cards = [
       "The experience opens into a premium, cinematic entry state designed for high-energy launches.",
     target: 1,
     icon: Ticket,
+    chips: ["Priority entry", "Cinematic payoff", "Fast flow"],
   },
 ] as const;
 
@@ -83,6 +86,16 @@ export function ExperiencePanels({ activeStage, onSelect }: Props) {
               </div>
               <h3 className="mt-5 text-lg font-semibold text-white/90">{card.title}</h3>
               <p className="mt-2 text-sm leading-6 text-white/55">{card.description}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {card.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[10px] uppercase tracking-[0.24em] text-white/45"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
               <div className="mt-5 flex items-center gap-2 text-sm font-medium uppercase tracking-[0.25em] text-[#E4FF00]/80">
                 Launch state
                 <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -108,7 +121,7 @@ export function ExperiencePanels({ activeStage, onSelect }: Props) {
                   Current state
                 </p>
                 <p className="mt-2 text-sm text-white/70">
-                  The orb starts in its liquid form before shifting into a particle storm as you move.
+                  The orb starts in its liquid form before shifting into a particle storm as you move, giving the first impression a layered, cinematic pulse.
                 </p>
               </div>
               <div className="rounded-full border border-[#E4FF00]/20 bg-[#E4FF00]/10 px-3 py-2 text-[11px] uppercase tracking-[0.3em] text-[#E4FF00]/80">
@@ -124,7 +137,7 @@ export function ExperiencePanels({ activeStage, onSelect }: Props) {
                   Atmosphere boost
                 </p>
                 <p className="mt-2 text-sm text-white/70">
-                  The particle cloud deepens, the halo brightens, and the environment becomes more cinematic.
+                  The particle cloud deepens, the halo brightens, and the environment becomes more cinematic with a stronger sense of motion and scale.
                 </p>
               </div>
               <div className="rounded-full border border-[#E4FF00]/20 bg-[#E4FF00]/10 px-3 py-2 text-[11px] uppercase tracking-[0.3em] text-[#E4FF00]/80">
@@ -140,7 +153,7 @@ export function ExperiencePanels({ activeStage, onSelect }: Props) {
                   Event access
                 </p>
                 <p className="mt-2 text-sm text-white/70">
-                  Your journey now completes in a premium-ready state with sharp motion and stronger visual payoff.
+                  Your journey now completes in a premium-ready state with sharper motion, more confidence, and a more polished event entry feel.
                 </p>
               </div>
               <div className="rounded-full border border-[#E4FF00]/20 bg-[#E4FF00]/10 px-3 py-2 text-[11px] uppercase tracking-[0.3em] text-[#E4FF00]/80">
