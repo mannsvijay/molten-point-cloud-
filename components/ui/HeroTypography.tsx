@@ -7,6 +7,12 @@ const line1 = "CHROMATIC";
 const line2 = "FLUX";
 
 export function HeroTypography() {
+  const stats = [
+    { label: "Signal", value: "Live" },
+    { label: "Atmosphere", value: "Immersive" },
+    { label: "Access", value: "Priority" },
+  ];
+
   return (
     <div className="pointer-events-none select-none">
       <div className="flex flex-wrap">
@@ -48,13 +54,31 @@ export function HeroTypography() {
         ))}
       </div>
       <motion.p
-        className="mt-8 max-w-xl text-sm uppercase tracking-[0.35em] text-white/45"
+        className="mt-8 max-w-2xl text-sm uppercase tracking-[0.35em] text-white/45"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
       >
-        The molten point cloud — a liquid chrome event horizon.
+        The molten point cloud — a liquid chrome event horizon designed for high-energy launches.
       </motion.p>
+      <motion.div
+        className="mt-6 flex flex-wrap gap-3"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.05, duration: 0.6 }}
+      >
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur"
+          >
+            <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+              {stat.label}
+            </span>
+            <span className="ml-2 text-sm font-medium text-[#E4FF00]">{stat.value}</span>
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }
