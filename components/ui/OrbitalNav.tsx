@@ -61,6 +61,7 @@ export function OrbitalNav() {
         {links.map((item) => (
           <li key={item.href}>
             <MagneticLink href={item.href} label={item.label} />
+
           </li>
         ))}
       </ul>
