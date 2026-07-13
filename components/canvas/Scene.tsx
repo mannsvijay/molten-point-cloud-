@@ -55,6 +55,7 @@ export function Scene() {
         <Environment preset="studio" />
 
         <Suspense fallback={null}>
+          <ScrollCamera />
           <Physics gravity={[0, 0, 0]}>
             <TheFlux />
           </Physics>

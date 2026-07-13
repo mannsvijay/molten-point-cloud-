@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { CalendarDays, MapPin, Sparkles } from "lucide-react";
 import { useFluxStore } from "@/store/useStore";
 import { OrbitalNav } from "./OrbitalNav";
