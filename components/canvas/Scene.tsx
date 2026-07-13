@@ -1,12 +1,33 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Suspense } from "react";
+import { Suspense, useRef, useEffect } from "react";
+import { useFluxStore } from "@/store/useStore";
 import { TheFlux } from "./TheFlux";
 import { ParticleCloud } from "./ParticleCloud";
 import { PostProcessing } from "./PostProcessing";
 import { Environment } from "@react-three/drei";
+import type { Camera } from "three";
+
+function ScrollCamera() {
+  const cameraRef = useRef<Camera>(null);
+  const scrollProgress = useFluxStore((s) => s.scrollProgress);
+
+  useFrame(({ camera }) => {
+    // Smooth camera rotation based on scroll progress
+    const rotX = scrollProgress * Math.PI * 0.3; // Rotate up to 0.3π
+    const rotY = scrollProgress * Math.PI * 0.2;
+    const zoom = 1 + scrollProgress * 0.4; // Slight zoom as you scroll
+
+    camera.position.z = 3.4 / zoom;
+    camera.position.y = scrollProgress * 1.2;
+    camera.rotation.x = rotX;
+    camera.rotation.y = rotY;
+  });
+
+  return null;
+}
 
 export function Scene() {
   return (
