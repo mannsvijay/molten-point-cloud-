@@ -1,12 +1,14 @@
 "use client";
 
-
 import { motion } from "framer-motion";
+import { useFluxStore } from "@/store/useStore";
 
 const line1 = "CHROMATIC";
 const line2 = "FLUX";
 
 export function HeroTypography() {
+  const scrollProgress = useFluxStore((s) => s.scrollProgress);
+  
   const stats = [
     { label: "Signal", value: "Live" },
     { label: "Atmosphere", value: "Immersive" },
@@ -14,7 +16,10 @@ export function HeroTypography() {
   ];
 
   return (
-    <div className="pointer-events-none select-none">
+    <motion.div 
+      className="pointer-events-none select-none"
+      style={{ opacity: Math.max(0.3, 1 - scrollProgress * 1.2) }}
+    >
       <div className="flex flex-wrap">
         {line1.split("").map((ch, i) => (
           <motion.span
@@ -79,6 +84,6 @@ export function HeroTypography() {
           </div>
         ))}
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
