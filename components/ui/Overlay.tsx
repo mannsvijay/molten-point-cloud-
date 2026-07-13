@@ -62,8 +62,14 @@ export function Overlay() {
       ref={surfaceRef}
       className="relative z-10 flex min-h-screen flex-col pointer-events-none"
     >
-      <header className="flex flex-wrap items-start justify-between gap-6 p-6 md:p-10">
-        <div className="pointer-events-auto space-y-3">
+      <motion.header 
+        className="flex flex-wrap items-start justify-between gap-6 p-6 md:p-10"
+        style={{ y: scrollProgress * -20 }}
+      >
+        <motion.div 
+          className="pointer-events-auto space-y-3"
+          style={{ opacity: Math.max(0.3, 1 - scrollProgress * 1.2) }}
+        >
           <div className="text-xs uppercase tracking-[0.4em] text-white/40">
             Chromatic Flux
           </div>
@@ -71,7 +77,7 @@ export function Overlay() {
             <Sparkles className="h-3.5 w-3.5 text-[#E4FF00]" />
             Live launch • 08 Jul 2026
           </div>
-        </div>
+        </motion.div>
         <div className="pointer-events-auto flex flex-col items-end gap-3">
           <OrbitalNav />
           <div className="flex items-center gap-2 rounded-full border border-[#E4FF00]/20 bg-[#E4FF00]/10 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-[#E4FF00]/80">
@@ -79,14 +85,26 @@ export function Overlay() {
             North Hall • 9:30 PM
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      <main className="flex flex-1 flex-col justify-end px-6 pb-16 md:px-14 md:pb-24">
-        <div className="max-w-5xl">
+      <motion.main 
+        className="flex flex-1 flex-col justify-end px-6 pb-16 md:px-14 md:pb-24"
+        style={{ y: scrollProgress * 30 }}
+      >
+        <motion.div 
+          className="max-w-5xl"
+          style={{ 
+            opacity: Math.max(0, 1 - scrollProgress * 1.5),
+            scale: 1 - scrollProgress * 0.15
+          }}
+        >
           <HeroTypography />
-        </div>
+        </motion.div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <motion.div 
+          className="mt-8 flex flex-wrap gap-3"
+          style={{ y: scrollProgress * 15 }}
+        >
           {detailPills.map((pill) => {
             const Icon = pill.icon;
             return (
@@ -102,22 +120,39 @@ export function Overlay() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="mt-10 max-w-5xl">
+        <motion.div 
+          className="mt-10 max-w-5xl"
+          style={{ y: scrollProgress * 20 }}
+        >
           <ExperiencePanels activeStage={activeStage} onSelect={handleStageSelect} />
-        </div>
+        </motion.div>
 
-        <div className="mt-14 flex flex-wrap items-end justify-between gap-8">
+        <motion.div 
+          className="mt-14 flex flex-wrap items-end justify-between gap-8"
+          style={{ y: scrollProgress * 25 }}
+        >
           <div className="pointer-events-auto">
             <TicketButton />
           </div>
           <div className="pointer-events-auto text-right text-[10px] uppercase tracking-[0.35em] text-white/35">
             <span className="block text-[#E4FF00]/80">State of matter</span>
-            <span className="mt-2 block font-mono text-white/50">{progressLabel}</span>
+            <motion.span 
+              className="mt-2 block font-mono text-white/50"
+              style={{ opacity: Math.min(1, scrollProgress * 2) }}
+            >
+              {progressLabel}
+            </motion.span>
           </div>
-        </div>
-      </main>
+        </motion.div>
+      </motion.main>
+
+      {/* Scroll progress indicator bar */}
+      <motion.div
+        className="fixed bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E4FF00] to-[#FF5F1F] origin-left z-50"
+        style={{ scaleX: scrollProgress }}
+      />
     </div>
   );
 }
