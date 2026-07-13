@@ -2,16 +2,14 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Suspense, useRef, useEffect } from "react";
+import { Suspense } from "react";
 import { useFluxStore } from "@/store/useStore";
 import { TheFlux } from "./TheFlux";
 import { ParticleCloud } from "./ParticleCloud";
 import { PostProcessing } from "./PostProcessing";
 import { Environment } from "@react-three/drei";
-import type { Camera } from "three";
 
 function ScrollCamera() {
-  const cameraRef = useRef<Camera>(null);
   const scrollProgress = useFluxStore((s) => s.scrollProgress);
 
   useFrame(({ camera }) => {
